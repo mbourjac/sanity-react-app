@@ -1,0 +1,14 @@
+@use '@styles/utils' as *;
+
+.header {
+  padding: $main-padding;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.active {
+  text-decoration: underline;
+}
