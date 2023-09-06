@@ -7,10 +7,12 @@ export const useRepository = <T>(
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      setHasFetched(false);
 
       const result = await fetchFunction();
 
@@ -21,10 +23,11 @@ export const useRepository = <T>(
       }
 
       setIsLoading(false);
+      setHasFetched(true);
     };
 
     fetchData();
   }, [fetchFunction]);
 
-  return { data, error, isLoading };
+  return { data, error, isLoading, hasFetched };
 };
