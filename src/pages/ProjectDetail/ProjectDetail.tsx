@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProjectCard } from '../../components/ProjectCard/ProjectCard';
 import { appRegistry } from '../../config/config.registry';
-import { useRepository } from '../../hooks/use-repository';
 import { NotFound } from '../../errors/errors.not-found';
+import { useQuery } from '@tanstack/react-query';
 
 const { projectRepository } = appRegistry;
 
@@ -15,24 +15,22 @@ export const ProjectDetail = () => {
     [slug]
   );
 
-  const {
-    data: project,
-    error,
-    isLoading,
-    hasFetched,
-  } = useRepository(getProject);
+  const { data, error, isError, isLoading, isFetched } = useQuery({
+    queryKey: ['project', { slug }],
+    queryFn: getProject,
+  });
 
   if (isLoading) {
     return <p>Loading project...</p>;
   }
 
-  if (error) {
-    return <p>{error}</p>;
+  if (isError) {
+    return <p>{error.message}</p>;
   }
 
-  if (hasFetched && !project) {
+  if (isFetched && !data) {
     throw new NotFound();
   }
 
-  return <section>{project && <ProjectCard project={project} />}</section>;
+  return <section>{data && <ProjectCard project={data} />}</section>;
 };

@@ -1,6 +1,6 @@
-import { useRepository } from '../../hooks/use-repository';
 import { appRegistry } from '../../config/config.registry';
 import { ProjectCard } from '../../components/ProjectCard/ProjectCard';
+import { useQuery } from '@tanstack/react-query';
 
 const { projectRepository } = appRegistry;
 
@@ -8,15 +8,19 @@ export const Home = () => {
   const {
     data: project,
     error: projectError,
-    isLoading: isLoadingProject,
-  } = useRepository(projectRepository.getNewestDocument);
+    isError: isProjectError,
+    isLoading: isProjectLoading,
+  } = useQuery({
+    queryKey: ['homeProject'],
+    queryFn: projectRepository.getNewestDocument,
+  });
 
-  if (isLoadingProject) {
+  if (isProjectLoading) {
     return <p>Loading project...</p>;
   }
 
-  if (projectError) {
-    return <p>{projectError}</p>;
+  if (isProjectError) {
+    return <p>{projectError.message}</p>;
   }
 
   return (

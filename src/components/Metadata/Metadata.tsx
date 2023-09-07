@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { appRegistry } from '../../config/config.registry';
-import { useRepository } from '../../hooks/use-repository';
+import { useQuery } from '@tanstack/react-query';
 
 type MetadataProps = {
   title?: string;
@@ -11,19 +11,13 @@ type MetadataProps = {
 const { metadataRepository } = appRegistry;
 
 export const Metadata = ({ title, description, ogImageUrl }: MetadataProps) => {
-  const { data: metadata } = useRepository(
-    metadataRepository.getSingleDocument
-  );
-  let appTitle = '';
-  let appDescription = '';
+  const { data: metadata } = useQuery({
+    queryKey: ['metadata'],
+    queryFn: metadataRepository.getSingleDocument,
+  });
 
-  if (metadata?.title) {
-    appTitle = metadata?.title;
-  }
-
-  if (metadata?.description) {
-    appDescription = metadata?.description;
-  }
+  const appTitle = metadata?.title || '';
+  const appDescription = metadata?.description || '';
 
   return (
     <Helmet>
