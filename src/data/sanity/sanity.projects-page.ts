@@ -1,6 +1,6 @@
 import groq from 'groq';
 import { SanityRepository } from './sanity.repository';
-import { IProjectsPage } from '../../types/project.types';
+import { IProjectsPage } from '../../content/project/project.types';
 
 export class SanityProjectsPageRepository extends SanityRepository<IProjectsPage> {
   type = 'projectsPage';

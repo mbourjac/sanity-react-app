@@ -1,7 +1,7 @@
 import { IRepository } from '../data/data.repository';
 import { SanityRegistry } from '../data/sanity/sanity.registry';
-import { IMetadata } from '../types/metadata.types';
-import { IProject, IProjectsPage } from '../types/project.types';
+import { IMetadata } from '../content/metadata/metadata.types';
+import { IProject, IProjectsPage } from '../content/project/project.types';
 
 export interface IRegistry {
   projectRepository: IRepository<IProject>;
