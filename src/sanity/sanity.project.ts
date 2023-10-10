@@ -6,18 +6,23 @@ export class SanityProjectRepository extends SanityRepository<IProject> {
   type = 'project';
   projection = groq`{
     "id": _id,
-    title,
-    "slug": slug.current
-    metadata {
-      title,
-      description,
-      ogImageUrl,
+    name,
+    "slug": slug.current,
+    defined(metadata) => {
+      metadata {
+        defined(title) => {title},
+        defined(description) => {description},
+        defined(ogImageUrl) => {
+          "ogImageUrl": ogImageUrl.asset->url
+        },
+      }
     },
     status,
     "typologies": typologies[]->name,
+    description,
     "images": images[] {
       "imageUrl": asset->url,
-      alt
+      defined(alt) => {alt},
     }
   }`;
 }
