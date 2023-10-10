@@ -1,5 +1,5 @@
 import groq from 'groq';
-import { IRepository } from '../data.repository';
+import { IRepository } from '../../types/repository.types';
 
 export abstract class SanityRepository<T> implements IRepository<T> {
   private readonly PROJECT_ID = 'u97bmxkv';
