@@ -1,8 +1,10 @@
 import groq from 'groq';
 import { SanityRepository } from './sanity.repository';
-import { IProject } from '../content/project/project.types';
+import { projectSchema } from '../content/project/project.schemas';
 
-export class SanityProjectRepository extends SanityRepository<IProject> {
+export class SanityProjectRepository extends SanityRepository<
+  typeof projectSchema
+> {
   type = 'project';
   projection = groq`{
     "id": _id,
@@ -25,4 +27,5 @@ export class SanityProjectRepository extends SanityRepository<IProject> {
       defined(alt) => {alt},
     }
   }`;
+  schema = projectSchema;
 }
