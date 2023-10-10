@@ -1,5 +1,4 @@
-export interface IMetadata {
-  title?: string;
-  description?: string;
-  ogImageUrl?: string;
-}
+import { z } from 'zod';
+import { metadataSchema } from './metadata.schemas';
+
+export type IMetadata = z.infer<typeof metadataSchema>;

@@ -1,7 +1,4 @@
-import { IMetadata } from '../metadata/metadata.types';
+import { z } from 'zod';
+import { projectsPageSchema } from './projects-page.schema';
 
-export interface IProjectsPage {
-  heading: string;
-  description: string;
-  metadata: IMetadata;
-}
+export type IProjectsPage = z.infer<typeof projectsPageSchema>;

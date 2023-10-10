@@ -1,17 +1,4 @@
-import { IMetadata } from '../metadata/metadata.types';
-import type { IProjectTypology } from '../project-typology/project-typology.types';
+import { z } from 'zod';
+import { projectSchema } from './project.schemas';
 
-export interface IProject {
-  id: string;
-  title: string;
-  slug: string;
-  metadata: IMetadata | null;
-  status: 'wip' | 'finished';
-  typologies: IProjectTypology[];
-  images: IProjectImage[];
-}
-
-export interface IProjectImage {
-  imageUrl: string;
-  alt?: string;
-}
+export type IProject = z.infer<typeof projectSchema>;
