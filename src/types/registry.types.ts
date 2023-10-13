@@ -1,12 +1,12 @@
-import { Metadata } from '../content/metadata/metadata.types';
-import { ProjectTypology } from '../content/project-typology/project-typology.types';
-import { Project } from '../content/project/project.types';
-import { ProjectsPage } from '../content/projects-page/projects-page.types';
 import { Repository } from './repository.types';
+import { MetadataSchema } from '../content/metadata/metadata.types';
+import { ProjectTypologySchema } from '../content/project-typology/project-typology.types';
+import { ProjectSchema } from '../content/project/project.types';
+import { ProjectsPageSchema } from '../content/projects-page/projects-page.types';
 
 export interface Registry {
-  projectRepository: Repository<Project>;
-  projectsPageRepository: Repository<ProjectsPage>;
-  projectTypologyRepository: Repository<ProjectTypology>;
-  metadataRepository: Repository<Metadata>;
+  projectRepository: Repository<ProjectSchema>;
+  projectsPageRepository: Repository<ProjectsPageSchema>;
+  projectTypologyRepository: Repository<ProjectTypologySchema>;
+  metadataRepository: Repository<MetadataSchema>;
 }
