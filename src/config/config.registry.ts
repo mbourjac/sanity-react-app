@@ -1,4 +1,4 @@
 import { SanityRegistry } from '../sanity/sanity.registry';
-import { IRegistry } from '../types/registry.types';
+import { Registry } from '../types/registry.types';
 
-export const appRegistry: IRegistry = new SanityRegistry();
+export const appRegistry: Registry = new SanityRegistry();

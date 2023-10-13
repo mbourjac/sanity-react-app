@@ -3,4 +3,4 @@ import { projectTypologySchema } from './project-typology.schemas';
 
 export type ProjectTypologySchema = typeof projectTypologySchema;
 
-export type IProjectTypology = z.infer<typeof projectTypologySchema>;
+export type ProjectTypology = z.infer<typeof projectTypologySchema>;

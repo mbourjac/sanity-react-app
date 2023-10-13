@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import groq from 'groq';
-import { IRepository } from '../types/repository.types';
+import { Repository } from '../types/repository.types';
 
 export abstract class SanityRepository<T extends z.ZodTypeAny>
-  implements IRepository<T>
+  implements Repository<T>
 {
   private readonly PROJECT_ID = 'u97bmxkv';
   private readonly DATASET = 'production';

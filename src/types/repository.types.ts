@@ -1,4 +1,4 @@
-export interface IRepository<T> {
+export interface Repository<T> {
   getAllDocuments: () => Promise<T[]>;
   getSingleDocument: () => Promise<T>;
   getNewestDocument: () => Promise<T>;
